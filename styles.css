@@ -1,0 +1,754 @@
+/* ==============================
+   Global Styles
+   ============================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+}
+
+body {
+    margin: 0;
+    width: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fb;
+    color: #1f2937;
+    overflow-x: hidden;
+}
+
+
+/* ==============================
+   Utility Classes
+   ============================== */
+
+.hidden {
+    display: none !important;
+}
+
+
+/* ==============================
+   Header
+   ============================== */
+
+.site-header {
+    background-color: #1f4e79;
+    color: #ffffff;
+}
+
+.header-container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px 24px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+.brand h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.brand p {
+    margin: 5px 0 0;
+    font-size: 14px;
+}
+
+
+/* ==============================
+   Navigation
+   ============================== */
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.main-nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    padding: 6px 0;
+}
+
+.main-nav a:hover {
+    text-decoration: underline;
+}
+
+
+/* ==============================
+   Main Content
+   ============================== */
+
+.page-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+
+/* ==============================
+   Form Card
+   ============================== */
+
+.form-card {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 35px;
+    border-radius: 12px;
+
+    box-shadow:
+        0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ==============================
+   Card Header
+   ============================== */
+
+.card-header {
+    margin-bottom: 30px;
+}
+
+.card-header h2 {
+    margin: 0 0 8px;
+    font-size: 24px;
+}
+
+.card-header p {
+    margin: 0;
+    color: #6b7280;
+    line-height: 1.5;
+}
+
+
+/* ==============================
+   Form Fields + CSS Grid
+   ============================== */
+
+form {
+    display: grid;
+
+    /* Two columns on desktop */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 22px;
+}
+
+.form-group {
+    margin-bottom: 0;
+    min-width: 0;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.required {
+    color: #dc2626;
+    font-weight: 700;
+}
+
+
+/* ==============================
+   Inputs and Select
+   ============================== */
+
+input[type="text"],
+input[type="date"],
+input[type="file"],
+select {
+    width: 100%;
+    max-width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+
+    background-color: #ffffff;
+    color: #1f2937;
+
+    font-size: 15px;
+    font-family: inherit;
+}
+
+
+/* ==============================
+   Focus State
+   ============================== */
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="file"]:focus,
+select:focus {
+    outline: 3px solid #bfdbfe;
+    border-color: #2563eb;
+}
+
+
+/* ==============================
+   Input Error & Field Errors
+   ============================== */
+
+.input-error {
+    border-color: #dc2626 !important;
+    outline-color: #fecaca !important;
+}
+
+.field-error {
+    display: block;
+    color: #dc2626;
+    font-size: 13px;
+    margin-top: 5px;
+    min-height: 18px;
+}
+
+.consent-error {
+    grid-column: 1 / -1;
+    margin-top: -12px;
+}
+
+
+/* ==============================
+   File Help & Selected File
+   ============================== */
+
+.file-help {
+    display: block;
+    margin-top: 7px;
+
+    color: #6b7280;
+    font-size: 13px;
+}
+
+.selected-file {
+    margin-top: 6px;
+    font-size: 13px;
+    color: #4b5563;
+    font-style: italic;
+    word-break: break-word;
+}
+
+
+/* ==============================
+   Validation Area
+   ============================== */
+
+.validation-area {
+    grid-column: 1 / -1;
+
+    margin-bottom: 0;
+
+    padding: 15px;
+
+    border-left: 4px solid #2563eb;
+    border-radius: 6px;
+
+    background-color: #eff6ff;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.validation-area strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.validation-area p {
+    margin: 0;
+
+    color: #4b5563;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.validation-area.has-errors {
+    border-left-color: #dc2626;
+    background-color: #fef2f2;
+}
+
+.validation-area.has-errors strong {
+    color: #991b1b;
+}
+
+.validation-area.has-success {
+    border-left-color: #16a34a;
+    background-color: #f0fdf4;
+}
+
+.validation-area.has-success strong {
+    color: #166534;
+}
+
+.validation-area ul {
+    margin: 8px 0 0 0;
+    padding-left: 20px;
+    color: #dc2626;
+    font-size: 14px;
+}
+
+.validation-area ul li {
+    margin-bottom: 4px;
+}
+
+
+/* ==============================
+   Request ID Status Card (Informational)
+   ============================== */
+
+.request-status-card {
+    grid-column: 1 / -1;
+
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-left: 4px solid #1f4e79;
+    border-radius: 8px;
+
+    padding: 16px 20px;
+    margin-bottom: 0;
+}
+
+.status-card-header h3 {
+    margin: 0 0 12px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1f4e79;
+}
+
+.status-card-section {
+    margin-bottom: 12px;
+}
+
+.status-section-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.status-indicator-dot {
+    font-size: 12px;
+    line-height: 1;
+}
+
+.status-blocked-title strong {
+    color: #991b1b;
+}
+
+.status-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.status-tag-blocked {
+    background-color: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.status-open-title strong {
+    color: #166534;
+}
+
+.status-tag-open {
+    background-color: #dcfce7;
+    color: #15803d;
+    border: 1px solid #86efac;
+    padding: 2px 10px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-left: 4px;
+}
+
+.status-card-note {
+    margin: 10px 0 0;
+    padding-top: 10px;
+    border-top: 1px solid #e2e8f0;
+
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+
+/* ==============================
+   Consent Checkbox
+   ============================== */
+
+.consent {
+    grid-column: 1 / -1;
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 10px;
+
+    margin-bottom: 0;
+}
+
+.consent input {
+    width: auto;
+    flex-shrink: 0;
+
+    margin-top: 4px;
+}
+
+.consent label {
+    margin: 0;
+    font-weight: normal;
+}
+
+
+/* ==============================
+   Buttons
+   ============================== */
+
+.buttons {
+    grid-column: 1 / -1;
+
+    display: flex;
+    justify-content: flex-end;
+
+    gap: 12px;
+}
+
+button {
+    padding: 11px 24px;
+
+    border: none;
+    border-radius: 7px;
+
+    font-family: inherit;
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+button[type="reset"] {
+    background-color: #e5e7eb;
+    color: #1f2937;
+}
+
+button[type="submit"] {
+    background-color: #1f4e79;
+    color: #ffffff;
+}
+
+
+/* ==============================
+   Button Hover
+   ============================== */
+
+button[type="reset"]:hover {
+    background-color: #d1d5db;
+}
+
+button[type="submit"]:hover {
+    background-color: #163a5c;
+}
+
+
+/* ==============================
+   Button Focus
+   ============================== */
+
+button:focus {
+    outline: 3px solid #bfdbfe;
+    outline-offset: 2px;
+}
+
+
+/* ==============================
+   Submission Summary Card
+   ============================== */
+
+@keyframes summaryFadeSlide {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.submission-summary {
+    margin-top: 30px;
+    background-color: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 10px;
+    padding: 24px 28px;
+    box-shadow: 0 4px 16px rgba(22, 163, 74, 0.08);
+    animation: summaryFadeSlide 0.4s ease-out;
+}
+
+.summary-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #dcfce7;
+}
+
+.success-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background-color: #16a34a;
+    color: #ffffff;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.summary-header h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #166534;
+    line-height: 1.2;
+}
+
+.summary-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.summary-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 16px;
+    align-items: center;
+    padding: 13px 0;
+    border-bottom: 1px solid #dcfce7;
+}
+
+.summary-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.summary-row span {
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.summary-row strong {
+    font-size: 14px;
+    font-weight: 600;
+    color: #111827;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+}
+
+.status-success {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #dcfce7;
+    color: #15803d;
+    border: 1px solid #86efac;
+    padding: 4px 14px;
+    border-radius: 9999px;
+    font-size: 13px;
+    font-weight: 700;
+    width: fit-content;
+    letter-spacing: 0.2px;
+}
+
+
+/* ==============================
+   Footer
+   ============================== */
+
+.site-footer {
+    text-align: center;
+
+    padding: 25px 20px;
+
+    color: #6b7280;
+    font-size: 14px;
+}
+
+
+/* ==============================
+   Responsive Design
+   ============================== */
+
+@media (max-width: 700px) {
+
+    /* Header */
+
+    .header-container {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        padding: 18px 20px;
+
+        gap: 18px;
+    }
+
+
+    /* Navigation */
+
+    .main-nav {
+        width: 100%;
+
+        flex-wrap: wrap;
+
+        gap: 8px 15px;
+    }
+
+    .main-nav a {
+        font-size: 13px;
+        padding: 4px 0;
+    }
+
+
+    /* Main */
+
+    .page-container {
+        margin: 25px auto;
+
+        padding: 0 15px;
+    }
+
+
+    /* Grid becomes one column */
+
+    form {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* Card */
+
+    .form-card {
+        padding: 25px 20px;
+
+        border-radius: 10px;
+    }
+
+
+    /* Card Heading */
+
+    .card-header h2 {
+        font-size: 21px;
+    }
+
+
+    /* Request ID Status Mobile */
+
+    .request-status-card {
+        padding: 14px 16px;
+    }
+
+    .status-tags {
+        gap: 6px;
+    }
+
+    .status-tag-blocked {
+        font-size: 12px;
+        padding: 3px 8px;
+    }
+
+
+    /* Buttons */
+
+    .buttons {
+        flex-direction: column-reverse;
+
+        gap: 10px;
+    }
+
+    button {
+        width: 100%;
+    }
+
+
+    /* Submission Summary Mobile */
+
+    .submission-summary {
+        padding: 20px 16px;
+    }
+
+    .summary-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+        align-items: flex-start;
+        padding: 10px 0;
+    }
+
+
+    /* Footer */
+
+    .site-footer {
+        padding: 20px 15px;
+    }
+}
+
+
+/* ==============================
+   Smaller Mobile Screens
+   ============================== */
+
+@media (max-width: 400px) {
+
+    .brand h1 {
+        font-size: 21px;
+    }
+
+    .brand p {
+        font-size: 13px;
+    }
+
+    .form-card {
+        padding: 22px 16px;
+    }
+
+    .page-container {
+        padding: 0 10px;
+    }
+
+    .main-nav {
+        gap: 7px 13px;
+    }
+
+    .summary-header h2 {
+        font-size: 18px;
+    }
+}
+
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

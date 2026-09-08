@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>New Hire Submission Document</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- ==============================
+         Header
+         ============================== -->
+
+    <header class="site-header">
+
+        <div class="header-container">
+
+            <div class="brand">
+                <h1>Employee Center</h1>
+                <p>New Hire Document Submission</p>
+            </div>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="#">Home</a>
+                <a href="#">Documents</a>
+                <a href="#">Profile</a>
+                <a href="#">Help</a>
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- ==============================
+         Main Content
+         ============================== -->
+
+    <main class="page-container">
+
+        <section class="form-card">
+
+            <div class="card-header">
+
+                <h2>Document Submission</h2>
+
+                <p>
+                    Please provide the required information and
+                    upload your onboarding document.
+                </p>
+
+            </div>
+
+
+            <!-- ==============================
+                 Document Submission Form
+                 ============================== -->
+
+            <form id="documentForm" novalidate>
+
+
+                <!-- Employee Name -->
+
+                <div class="form-group">
+
+                    <label for="employeeName">
+                        Employee Name
+                        <span class="required">*</span>
+                    </label>
+
+                    <input type="text" id="employeeName" name="employeeName" placeholder="Enter employee name">
+
+                    <span class="field-error" id="employeeNameError">
+                    </span>
+
+                </div>
+
+
+                <!-- Request ID -->
+
+                <div class="form-group">
+
+                    <label for="requestId">
+                        Request ID
+                        <span class="required">*</span>
+                    </label>
+
+                    <input type="text" id="requestId" name="requestId" placeholder="Enter request ID">
+
+                    <span class="field-error" id="requestIdError">
+                    </span>
+
+                </div>
+
+
+                <!-- Document Type -->
+
+                <div class="form-group">
+
+                    <label for="documentType">
+                        Document Type
+                        <span class="required">*</span>
+                    </label>
+
+                    <select id="documentType" name="documentType">
+                    </select>
+
+                    <span class="field-error" id="documentTypeError">
+                    </span>
+
+                </div>
+
+
+                <!-- Submission Date -->
+
+                <div class="form-group">
+
+                    <label for="submissionDate">
+                        Submission Date
+                        <span class="required">*</span>
+                    </label>
+
+                    <input type="date" id="submissionDate" name="submissionDate">
+
+                    <span class="field-error" id="submissionDateError">
+                    </span>
+
+                </div>
+
+
+                <!-- File Upload -->
+
+                <div class="form-group file-group">
+
+                    <label for="document">
+                        Upload Document
+                        <span class="required">*</span>
+                    </label>
+
+                    <input type="file" id="document" name="document" accept=".pdf,.doc,.docx">
+
+                    <small class="file-help">
+                        Accepted formats: PDF, DOC, DOCX (Max 5MB)
+                    </small>
+
+                    <div class="selected-file" id="fileName">
+                        No file selected
+                    </div>
+
+                    <span class="field-error" id="documentError">
+                    </span>
+
+                </div>
+
+
+                <!-- ==============================
+                     Validation Area
+                     ============================== -->
+
+                <div class="validation-area" id="validationArea" role="alert" aria-live="polite">
+
+                    <strong>Submission Requirements</strong>
+
+                    <p id="validationText">
+                        Please complete all required fields before
+                        submitting the form.
+                    </p>
+
+                    <ul id="validationMessages"></ul>
+
+                </div>
+
+
+                <!-- ==============================
+                     Request ID Status (Informational)
+                     ============================== -->
+
+                <div class="request-status-card" id="requestStatusCard" aria-label="Request ID Status">
+
+                    <div class="status-card-header">
+                        <h3>Request ID Status</h3>
+                    </div>
+
+                    <div class="status-card-section">
+                        <div class="status-section-title status-blocked-title">
+                            <span class="status-indicator-dot red-dot" aria-hidden="true">🔴</span>
+                            <strong>Blocked / Error Test IDs</strong>
+                        </div>
+                        <div class="status-tags">
+                            <span class="status-tag status-tag-blocked">REQ-400</span>
+                            <span class="status-tag status-tag-blocked">REQ-401</span>
+                            <span class="status-tag status-tag-blocked">REQ-404</span>
+                            <span class="status-tag status-tag-blocked">REQ-409</span>
+                            <span class="status-tag status-tag-blocked">REQ-500</span>
+                        </div>
+                    </div>
+
+                    <div class="status-card-section">
+                        <div class="status-section-title status-open-title">
+                            <span class="status-indicator-dot green-dot" aria-hidden="true">🟢</span>
+                            <strong>All Other Request IDs:</strong>
+                            <span class="status-tag status-tag-open">OPEN</span>
+                        </div>
+                    </div>
+
+                    <p class="status-card-note">
+                        Blocked IDs are reserved for HTTP error-status testing.
+                    </p>
+
+                </div>
+
+
+                <!-- ==============================
+                     Consent
+                     ============================== -->
+
+                <div class="consent">
+
+                    <input type="checkbox" id="consent" name="consent">
+
+                    <label for="consent">
+
+                        I confirm that the information submitted
+                        is accurate and complete.
+
+                        <span class="required">*</span>
+
+                    </label>
+
+                </div>
+
+                <span class="field-error consent-error" id="consentError">
+                </span>
+
+
+                <!-- ==============================
+                     Buttons
+                     ============================== -->
+
+                <div class="buttons">
+
+                    <button type="reset" id="resetButton">
+                        Reset
+                    </button>
+
+                    <button type="submit" id="submitButton">
+                        Submit
+                    </button>
+
+                </div>
+
+            </form>
+
+
+            <!-- ==============================
+                 Submission Summary
+                 ============================== -->
+
+            <section class="submission-summary hidden" id="submissionSummary" aria-live="polite">
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==============================
+         Footer
+         ============================== -->
+
+    <footer class="site-footer">
+
+        <p>
+            &copy; 2026 New Hire Document Submission.
+            All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>

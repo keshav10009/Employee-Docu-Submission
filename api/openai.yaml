@@ -1,0 +1,248 @@
+openapi: 3.0.3
+
+info:
+  title: New Hire Document Submission API
+  description: API contract for submitting and retrieving new hire documents.
+  version: 1.0.0
+
+servers:
+  - url: https://api.example.com
+
+paths:
+
+  /api/documents:
+    post:
+      summary: Submit a new hire document
+      description: Creates a new document submission.
+      operationId: submitDocument
+
+      security:
+        - bearerAuth: []
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentSubmissionRequest'
+
+            example:
+              employeeName: "Keshav Bansal"
+              requestId: "REQ-2026-001"
+              documentType: "Aadhaar Card"
+              submissionDate: "2026-09-08"
+              fileName: "aadhaar.pdf"
+              consent: true
+
+      responses:
+
+        '201':
+          description: Document submitted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentSubmissionResponse'
+
+        '400':
+          description: Invalid request or missing required fields
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+        '401':
+          description: Authentication required or token is invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+        '409':
+          description: Request ID already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+
+  /api/documents/{requestId}:
+    get:
+      summary: Get document submission status
+      description: Retrieves the status of a document submission.
+
+      operationId: getDocumentStatus
+
+      security:
+        - bearerAuth: []
+
+      parameters:
+        - name: requestId
+          in: path
+          required: true
+          description: Unique document submission request ID
+          schema:
+            type: string
+          example: REQ-2026-001
+
+      responses:
+
+        '200':
+          description: Submission status retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentStatusResponse'
+
+        '401':
+          description: Authentication required or token is invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+        '404':
+          description: Document submission not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+
+components:
+
+  securitySchemes:
+
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+
+  schemas:
+
+    DocumentSubmissionRequest:
+      type: object
+      required:
+        - employeeName
+        - requestId
+        - documentType
+        - submissionDate
+        - fileName
+        - consent
+
+      properties:
+
+        employeeName:
+          type: string
+          description: Name of the employee
+          example: Keshav Bansal
+
+        requestId:
+          type: string
+          description: Unique document submission request ID
+          example: REQ-2026-001
+
+        documentType:
+          type: string
+          description: Type of document being submitted
+          example: Aadhaar Card
+
+        submissionDate:
+          type: string
+          format: date
+          description: Date on which the document is submitted
+          example: 2026-09-08
+
+        fileName:
+          type: string
+          description: Name of the uploaded document
+          example: aadhaar.pdf
+
+        consent:
+          type: boolean
+          description: Employee confirms submitted information is accurate
+          example: true
+
+
+    DocumentSubmissionResponse:
+      type: object
+      required:
+        - requestId
+        - status
+        - message
+
+      properties:
+
+        requestId:
+          type: string
+          example: REQ-2026-001
+
+        status:
+          type: string
+          example: SUBMITTED
+
+        message:
+          type: string
+          example: Document submitted successfully.
+
+
+    DocumentStatusResponse:
+      type: object
+      required:
+        - requestId
+        - status
+
+      properties:
+
+        requestId:
+          type: string
+          example: REQ-2026-001
+
+        status:
+          type: string
+          enum:
+            - SUBMITTED
+            - UNDER_REVIEW
+            - APPROVED
+            - REJECTED
+
+        documentType:
+          type: string
+          example: Aadhaar Card
+
+        submissionDate:
+          type: string
+          format: date
+          example: 2026-09-08
+
+
+    ErrorResponse:
+      type: object
+      required:
+        - status
+        - message
+
+      properties:
+
+        status:
+          type: integer
+          example: 400
+
+        message:
+          type: string
+          example: Invalid request.
+
